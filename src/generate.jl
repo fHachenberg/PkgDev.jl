@@ -124,6 +124,8 @@ function init(pkg::AbstractString, url::AbstractString=""; config::Dict=Dict())
             end
             LibGit2.set_remote_url(repo, url)
         end
+    catch err
+        throw(Pkg.PkgError("Unable to set git remote to $url: $err"))
     end
     return repo
 end
